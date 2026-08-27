@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 20" role="img" aria-labelledby="title">
+  <title id="title">Cờ Việt Nam</title>
+  <rect width="28" height="20" rx="2" fill="#da251d"/>
+  <path fill="#ff0" d="m14 4 1.41 4.34h4.56l-3.69 2.68 1.41 4.34L14 12.68l-3.69 2.68 1.41-4.34-3.69-2.68h4.56z"/>
+</svg>

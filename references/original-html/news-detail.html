@@ -1,0 +1,341 @@
+<!DOCTYPE html><html lang="vi" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>Chính Nhân Technology - Chi tiết tin tức</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-primary-fixed-variant": "#7c2e00",
+                        "tertiary-container": "#009cfc",
+                        "inverse-on-surface": "#f4f0ef",
+                        "on-tertiary-container": "#003155",
+                        "primary": "#a33e00",
+                        "secondary-container": "#85cbfe",
+                        "surface-container-high": "#ece7e7",
+                        "inverse-surface": "#313030",
+                        "surface-dim": "#ddd9d8",
+                        "on-secondary-fixed": "#001e2f",
+                        "surface-tint": "#a33e00",
+                        "on-background": "#1c1b1b",
+                        "outline-variant": "#e3bfb1",
+                        "surface-container": "#F6F3F2",
+                        "on-secondary-fixed-variant": "#004b6f",
+                        "surface": "#FFFFFF",
+                        "on-tertiary-fixed": "#001d35",
+                        "tertiary-fixed-dim": "#9ccaff",
+                        "on-error-container": "#93000a",
+                        "on-tertiary-fixed-variant": "#00497b",
+                        "on-error": "#ffffff",
+                        "error": "#ba1a1a",
+                        "on-surface-variant": "#5a4136",
+                        "primary-container": "#ff6600",
+                        "surface-bright": "#fdf8f8",
+                        "on-primary-fixed": "#360f00",
+                        "surface-container-lowest": "#ffffff",
+                        "on-tertiary": "#ffffff",
+                        "surface-container-low": "#f7f2f2",
+                        "primary-fixed": "#ffdbcd",
+                        "secondary-fixed": "#c9e6ff",
+                        "on-primary-container": "#561d00",
+                        "inverse-primary": "#ffb596",
+                        "primary-fixed-dim": "#ffb596",
+                        "on-secondary-container": "#00567d",
+                        "background": "#fdf8f8",
+                        "hotline-urgent": "#D32F2F",
+                        "error-container": "#ffdad6",
+                        "secondary": "#016491",
+                        "surface-variant": "#e6e1e1",
+                        "on-primary": "#ffffff",
+                        "surface-container-highest": "#e6e1e1",
+                        "on-surface": "#1c1b1b",
+                        "tertiary": "#0062a1",
+                        "outline": "#8e7164",
+                        "tertiary-fixed": "#d0e4ff",
+                        "on-secondary": "#ffffff",
+                        "secondary-fixed-dim": "#8aceff"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "section-desktop": "80px",
+                        "container-max": "1280px",
+                        "section-mobile": "48px"
+                    },
+                    "fontFamily": {
+                        "body-sm": ["Be Vietnam Pro"],
+                        "headline-lg": ["Be Vietnam Pro"],
+                        "display-lg": ["Be Vietnam Pro"],
+                        "headline-md": ["Be Vietnam Pro"],
+                        "label-md": ["Be Vietnam Pro"],
+                        "headline-sm": ["Be Vietnam Pro"],
+                        "body-md": ["Be Vietnam Pro"],
+                        "headline-lg-mobile": ["Be Vietnam Pro"],
+                        "body-lg": ["Be Vietnam Pro"]
+                    },
+                    "fontSize": {
+                        "body-sm": ["14px", { "lineHeight": "20px", "fontWeight": "400" }],
+                        "headline-lg": ["36px", { "lineHeight": "44px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "display-lg": ["48px", { "lineHeight": "60px", "letterSpacing": "-0.02em", "fontWeight": "700" }],
+                        "headline-md": ["28px", { "lineHeight": "34px", "fontWeight": "600" }],
+                        "label-md": ["14px", { "lineHeight": "20px", "letterSpacing": "0.05em", "fontWeight": "600" }],
+                        "headline-sm": ["20px", { "lineHeight": "28px", "fontWeight": "600" }],
+                        "body-md": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["30px", { "lineHeight": "38px", "fontWeight": "700" }],
+                        "body-lg": ["18px", { "lineHeight": "28px", "fontWeight": "400" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        .hover-glow:hover {
+            box-shadow: 0 4px 20px rgba(255, 102, 0, 0.15);
+            border-bottom: 2px solid #FF6600;
+        }
+        .toc-link:hover {
+            color: #FF6600;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md bg-white">
+<!-- TopNavBar -->
+<div class="border-b border-outline-variant/30 py-2 hidden md:block bg-white">
+<div class="max-w-container-max mx-auto px-margin-desktop flex justify-center items-center text-sm font-label-md text-on-surface-variant"><div class="flex justify-between items-center w-full py-2">
+<div class="flex items-center gap-6">
+<span class="flex items-center gap-2 font-black text-lg text-hotline-urgent">
+<span class="material-symbols-outlined text-[20px]">call</span>
+      1900 571 200
+    </span>
+<div class="w-px h-4 bg-outline-variant/30"></div>
+<span class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">mail</span>
+      cskh@chinhnhan.vn
+    </span>
+</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">schedule</span>
+<span class="">T2-T6: 8:00 - 17:30 | T7: 8:00 - 12:00</span>
+</div>
+</div></div>
+</div>
+<nav class="bg-white font-label-md text-label-md docked full-width top-0 sticky z-50 shadow-[0_2px_10px_rgba(0,0,0,0.02)] border-b border-outline-variant/10">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-container-max mx-auto h-24">
+<a class="flex items-center gap-2 font-headline-sm text-headline-sm font-bold text-primary" href="#">
+<img alt="Chính Nhân Technology" class="h-10 object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBVMIPMgJLLdXnekutNU9BsyQfkJLfqgCeFkKN3kf-eLb4mJsu07vHqRSoWBq26301j3n0Q652V9m0MqUY_Bf_ctoPtr_XA87O52mHcbdmyB_XMAeCGBzyKTfhcR1wYx_JscccL8d65hGISD_ch7py5_LMWYid8OjcBUWlcxARFeUBsyO-to5pfy72bDmKzvjmw-QFms6bln3kBqiM9GH1Qi3PJlYhdQ7j_d-x_MCo07ToiR_1R8wct3x_S5BGkXF9jIg">
+</a>
+<ul class="hidden md:flex items-center gap-8">
+<li class=""><a class="text-on-surface-variant hover:text-primary-container transition-colors pb-1" href="#">Giới thiệu</a></li>
+<li class="relative group mega-menu-trigger"><a class="text-on-surface-variant flex items-center gap-1 hover:text-primary-container transition-colors pb-1" href="#dich-vu">Dịch vụ IT <span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span></a></li>
+<li class="relative group mega-menu-trigger"><a class="text-on-surface-variant flex items-center gap-1 hover:text-primary-container transition-colors pb-1" href="#">Thủ thuật - Tin tức <span class="material-symbols-outlined text-[18px]">keyboard_arrow_down</span></a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary-container transition-colors pb-1" href="#">Tuyển dụng</a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary-container transition-colors pb-1" href="#lien-he">Liên hệ</a></li>
+</ul>
+<div class="hidden md:flex items-center gap-4"><div class="flex items-center gap-4">
+<div class="flex items-center gap-3">
+<button class="flex items-center hover:opacity-80 transition-opacity">
+<img alt="Tiếng Việt" class="w-6 h-4 object-cover rounded-sm shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1WYxVI7j7MmwBojoTDUtV3YSecnmY2sahE4ZSGa-GdIBUeCXeu3FO0kYxNRZO-YWXJLbbpAZnylGVVPHCVAYlpI0HN9ep0fEhrc6pIFhHwdHk2U3bxkxjdeX5fgsZO-AccxocNH287EKF38gI6KoEXLHVfJk5XcBL8bRJsFWrySymtndJZOPgRwN70NfaXFS7lQPExD3LXS9MZ7FAd8wJdBZTBeYwXizHDxlS9QVJ3qSD5kNwbAOV6Hj00">
+</button>
+<div class="w-px h-4 bg-outline-variant/30"></div>
+<button class="flex items-center hover:opacity-80 transition-opacity">
+<img alt="English" class="w-6 h-4 object-cover rounded-sm shadow-sm" src="https://lh3.googleusercontent.com/aida/AEtjO1W0FfHY8ThiNzcUIGkZKCr-KXSFNkbA_HEZvG8XTWa-alc0trQqBjdQC-yHCaPHlFE1tJg0PH8xmBCZi_dGLBrCD_LNnH0zP4CPMj1OK1rKSzxP8_ec2g58e5E490bWwQX7C-Hm-V1KrOTBZ36jgcOLOsdcCGMVV5SLShxJiBB1B_d8ZvJznS33suta8S8-t-_7rPofrY0YvRgkpoE0IQwLbu0aPQ_g9vCTGLgr-h95SgQahx-n-jW64_0">
+</button>
+</div>
+<button class="bg-primary-container text-white px-6 py-2.5 rounded-full font-bold text-sm flex items-center gap-2 hover:bg-primary transition-all shadow-[0_4px_14px_rgba(232,110,38,0.25)] hover:shadow-[0_6px_20px_rgba(232,110,38,0.35)]">
+    Nhận tư vấn
+    <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</button>
+</div></div>
+</div>
+</nav>
+<!-- Hero Section (Thinner version) -->
+
+<!-- Main Content Area -->
+<main class="max-w-container-max mx-auto px-margin-mobile md:px-margin-desktop grid grid-cols-1 md:grid-cols-12 gap-gutter pt-8 pb-12">
+<!-- Article Content (8 columns) -->
+<article class="md:col-span-8 bg-surface rounded-xl shadow-sm p-6 md:p-8 hover-glow transition-all duration-300 bg-white shadow-[0_8px_30px_rgb(0,0,0,0.04)] border-0">
+<!-- Article Header -->
+
+
+<!-- Featured Image -->
+<div class="mb-8 rounded-lg overflow-hidden border border-surface-variant">
+<img alt="Sửa lỗi bàn phím" class="w-full h-auto object-cover" data-alt="A professional close-up shot of a person cleaning a laptop keyboard with a microfiber cloth. The setting is a bright, modern office with soft natural lighting coming from a nearby window. The color palette features clean whites, deep tech-blacks of the keyboard, and a subtle glowing orange accent in the background to match the brand aesthetic. High resolution, crisp focus." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbIVQOwrGC8UZPRenfYCFENxpAAjka-PFYtOrlmqpEBu9gc8k5o32bBNUCPXbxb9pH6J8B890Acqhi1RDoPxR8ja8i6aOpPda0oDIDzdK-Ej2priMsTXfgpSMFcrigblDmpKqc3s6bvBwycIarMUnx3Oe9upeGhyR55tn9lHCWmcfmYZhn29xgIg9LKZv6QUbLmHbXbaT-IHkZ3LuB-IijUI8HJ-WEhKiBZf4AXBNFD6j_WqxA_60Z">
+</div>
+<!-- Table of Contents -->
+<div class="bg-surface-container-low border border-outline-variant p-6 rounded-lg mb-8 bg-white border-0 shadow-[0_4px_20px_rgba(0,0,0,0.03)]">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-background mb-4 flex items-center gap-2 border-outline-variant pb-2">
+<span class="material-symbols-outlined">list</span> NỘI DUNG BÀI VIẾT
+                </h3>
+<ol class="list-decimal list-inside space-y-2 font-body-md text-on-surface-variant">
+<li class=""><a class="toc-link font-semibold text-on-background" href="#section1">8 cách sửa lỗi bàn phím Win 10 hiệu quả nhất</a>
+<ul class="list-none pl-6 space-y-1 mt-1">
+<li class=""><a class="toc-link" href="#sub1">1.1. Lỗi khi gõ tiếng Việt có dấu</a></li>
+<li class=""><a class="toc-link" href="#sub2">1.2. Lỗi nhấn chữ ra số trên laptop</a></li>
+<li class=""><a class="toc-link" href="#sub3">1.3. Lỗi bàn phím Win 10 gõ xuất hiện mmmm, hhhh,...</a></li>
+<li class=""><a class="toc-link" href="#sub4">1.4. Lỗi gõ dđ khi gõ bàn phím</a></li>
+<li class=""><a class="toc-link" href="#sub5">1.5. Lỗi khi nhấn tổ hợp phím tắt</a></li>
+</ul>
+</li>
+<li class=""><a class="toc-link font-semibold text-on-background" href="#section2">Kết luận</a></li>
+</ol>
+</div>
+<!-- Body Content -->
+<div class="prose max-w-none text-on-surface-variant font-body-md leading-relaxed">
+<p class="mb-4">Bàn phím là một trong những thiết bị ngoại vi quan trọng nhất, nhưng thỉnh thoảng chúng ta lại gặp phải tình trạng lỗi bàn phím trên hệ điều hành Windows 10. Trong bài viết này, Chính Nhân Technology sẽ hướng dẫn bạn các cách khắc phục phổ biến và hiệu quả nhất.</p>
+<h2 class="font-headline-md text-headline-md text-on-background mt-8 mb-4" id="section1">1. 8 cách sửa lỗi bàn phím Win 10 hiệu quả nhất</h2>
+<h3 class="font-headline-sm text-headline-sm text-on-background mt-6 mb-3" id="sub1">1.1. Lỗi khi gõ tiếng Việt có dấu</h3>
+<p class="mb-4">Đây là lỗi rất thường gặp khi bạn sử dụng các phần mềm gõ tiếng Việt như Unikey. Nguyên nhân thường do xung đột phần mềm hoặc chọn sai bảng mã/kiểu gõ. Để khắc phục, bạn cần kiểm tra lại cấu hình Unikey và đảm bảo nó đang chạy dưới quyền Administrator.</p>
+<h3 class="font-headline-sm text-headline-sm text-on-background mt-6 mb-3" id="sub2">1.2. Lỗi nhấn chữ ra số trên laptop</h3>
+<p class="mb-4">Lỗi này thường xảy ra trên các laptop có bàn phím nhỏ không có cụm phím số riêng, khi người dùng vô tình kích hoạt chế độ NumLock. Bạn chỉ cần nhấn tổ hợp phím <strong>Fn + NumLk</strong> để tắt chế độ này.</p>
+<!-- Placeholder for more content to show scrolling -->
+<div class="h-64 bg-surface-container-low flex items-center justify-center border border-dashed border-outline rounded-lg my-6">
+<span class="text-on-surface-variant">[Content Placeholder for sections 1.3 - 1.5]</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-on-background mt-8 mb-4" id="section2">2. Kết luận</h2>
+<p class="mb-4">Hy vọng với những hướng dẫn trên, bạn đã có thể tự khắc phục được các lỗi bàn phím cơ bản trên Windows 10. Nếu tình trạng vẫn tiếp diễn, có thể bàn phím của bạn đã bị lỗi phần cứng và cần được kiểm tra bởi các chuyên gia.</p>
+</div>
+<!-- Related Posts Bottom -->
+<div class="mt-12 pt-8 border-t border-surface-variant">
+<h3 class="font-headline-sm text-headline-sm text-on-background mb-6">Bài viết liên quan</h3>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+<div class="bg-surface-container-low p-4 rounded-lg hover:shadow-sm transition-shadow">
+<img alt="Server image" class="w-full h-32 object-cover rounded mb-3" data-alt="A modern, high-tech server room with glowing blue and orange lights. Rows of server racks stretch into the background, with data cables neatly organized. The aesthetic is clean, professional, and luminous, representing advanced cloud computing solutions." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC9CEOd2JUlKQGIyK_O3mqB9_mke_9nLmDr7C6YTT6CKdKuK2UQUkuUN0hi71mL3NDeAt7nyuZKVSgoQjIArvkacbyGVbIq1SRRGJ_XvOz6STqoH9mvS6N2msewYswOp52vTZEw-tfSvRteA4ZMUPj-99VZE2_4sE0nvXKhpf_7oEFlqgpf6w5IN_f8DPPR682JkWG4ch1CATALo0ZsS6BoXWqgYPAbdRjBF7oAOxl9yngKSdUL-LQ9">
+<h4 class="font-label-md text-label-md text-on-background font-bold mb-2 line-clamp-2">Tối ưu hóa Cloud Server cho doanh nghiệp vừa và nhỏ</h4>
+<span class="text-body-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 15/10/2023</span>
+</div>
+<div class="bg-surface-container-low p-4 rounded-lg hover:shadow-sm transition-shadow">
+<img alt="Desk setup" class="w-full h-32 object-cover rounded mb-3" data-alt="A sleek, modern office desk setup featuring dual monitors displaying lines of code, a premium mechanical keyboard, and an ergonomic mouse. The scene is brightly lit with a clean white and minimalist aesthetic, accented by subtle vibrant orange desktop accessories." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Y1tDCG6tHChCy3PTfbttayzk6bvMNXKqGrXMM7HbUMwAN-cS6kwY7njEImAv0BMyZKJSaLZ7JG-EmudtbuBAY0u8YzgImqQNGjLWNM3EAi-zGGHcDokHxIJSueoTcZmcx-YYAx5qei--YZTXXzCDh40jxXVaB5wfwyL3J1RU0oTxiu3j7fZ9z8HYBKGGgxFMLUZEq1UWZ1Z2JzyS7BKdDpGsRopRnsR9G4hW34T2fSNmmROWC0Di">
+<h4 class="font-label-md text-label-md text-on-background font-bold mb-2 line-clamp-2">Hướng dẫn setup góc làm việc IT chuẩn công thái học</h4>
+<span class="text-body-sm text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 10/10/2023</span>
+</div>
+</div>
+</div>
+</article>
+<!-- Sidebar (4 columns) -->
+<aside class="md:col-span-4 space-y-8">
+<!-- Search -->
+<div class="bg-surface p-6 rounded-xl shadow-sm border border-surface-variant hover-glow transition-all border-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<form class="relative">
+<input class="w-full border-b border-outline-variant bg-transparent py-2 pl-2 pr-10 text-body-md focus:outline-none focus:border-primary focus:ring-0 transition-colors" placeholder="Tìm kiếm bài viết..." type="text">
+<button class="absolute right-2 top-2 text-on-surface-variant hover:text-primary" type="submit">
+<span class="material-symbols-outlined">search</span>
+</button>
+</form>
+</div>
+<!-- Categories -->
+<div class="bg-surface p-6 rounded-xl shadow-sm border border-surface-variant hover-glow transition-all border-0 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-background mb-4 border-b border-surface-variant pb-2">Danh mục</h3>
+<ul class="space-y-3 font-body-md">
+<li class=""><a class="text-on-surface-variant hover:text-primary flex justify-between items-center group" href="#"><span class="group-hover:translate-x-1 transition-transform">Tin tức công ty</span> <span class="bg-surface-container-high px-2 py-0.5 rounded text-body-sm">12</span></a></li>
+<li class=""><a class="text-primary font-bold flex justify-between items-center group" href="#"><span class="translate-x-1">Thủ thuật máy tính</span> <span class="bg-primary-container text-on-primary px-2 py-0.5 rounded text-body-sm">45</span></a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary flex justify-between items-center group" href="#"><span class="group-hover:translate-x-1 transition-transform">Giải pháp doanh nghiệp</span> <span class="bg-surface-container-high px-2 py-0.5 rounded text-body-sm">28</span></a></li>
+<li class=""><a class="text-on-surface-variant hover:text-primary flex justify-between items-center group" href="#"><span class="group-hover:translate-x-1 transition-transform">Đánh giá sản phẩm</span> <span class="bg-surface-container-high px-2 py-0.5 rounded text-body-sm">19</span></a></li>
+</ul>
+</div>
+<!-- Recent Posts -->
+<div class="bg-surface p-6 rounded-xl shadow-sm border border-surface-variant hover-glow transition-all border-0 shadow-[0_8_30px_rgb(0,0,0,0.04)]">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-background mb-4 border-b border-surface-variant pb-2">Bài viết mới</h3>
+<div class="space-y-4">
+<a class="flex gap-3 group" href="#">
+<div class="w-16 h-16 shrink-0 rounded overflow-hidden">
+<img alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A close-up abstract view of glowing orange fiber optic cables against a dark background, symbolizing high-speed internet and modern IT infrastructure. The aesthetic is highly technical, vibrant, and energetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD6o-b31yO78v2lTQHgsXLmNHbgFjLN2hvAi1oUVwV__hv4ZHqCZAp2K7HWJ_12ZQeqnLHT1R1G7qCmx6yY1EJqSoJR438vpHlr68Pv6TRB6SrQsy3ASOPBzoWf2n8oW390GobZlAOEIFhovgXvBFMqHK1OMi4Yol6US2gsQXCr56TiPi3K8PD02gI_CupKWRNkE0kZpS-NNLP6klasd7xsuTCiz0Lbp4Ioi0XqUM-r7rmWy2vN50SR">
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-background group-hover:text-primary line-clamp-2">“MÁY TÍNH CHO EM” – TỪ SỨ MỆNH HOÀN THÀNH ĐẾN GIÁ TRỊ...</h4>
+</div>
+</a>
+<a class="flex gap-3 group" href="#">
+<div class="w-16 h-16 shrink-0 rounded overflow-hidden">
+<img alt="Thumbnail" class="w-full h-full object-cover group-hover:scale-110 transition-transform" data-alt="A modern office environment showing IT professionals collaborating over a digital dashboard. Bright, well-lit space with white surfaces and sleek technological devices. High contrast and corporate professional aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBzl3CWpTNbaB4vpOFSbWJ0E0g-LXmhm1S_StPFhIFQGzqSIc2C7_XgAmr78XiGArzjimAYEkyHs1LO3CHEk0fw5fgKpuiLnOoQ1e0VjNKJ0wcaShuIK0gGGRVYh4UHrv8FtjUzXlRsNdAbL1LasGpdvqJWg3hV2ELRbK7zvJ5-aukh0HHv1xH4p8aaf4lw474nmahj-ZIudSQ7lUGaBn27_1vZDcPXFrZZkJJO6SnVbHTG8d7B_9__">
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-on-background group-hover:text-primary line-clamp-2">Dịch vụ IT thuê ngoài cho công ty Thiết kế tại TP.HCM</h4>
+</div>
+</a>
+</div>
+</div>
+<!-- Promotional Banner -->
+<div class="rounded-xl overflow-hidden shadow-sm relative group cursor-pointer border-primary-container shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+<img alt="Dịch vụ cho thuê thiết bị" class="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500" data-alt="A professional promotional banner design for IT equipment rental services. The image features a sleek, modern multi-function printer and a stack of laptops on a clean white desk. The background is a vibrant gradient of primary orange and deep tech-blue. Bold typography and clear call-to-action elements are integrated into the design." src="https://lh3.googleusercontent.com/aida-public/AB6AXuA840sFn5DQQPqL2gjfkD-PzyfTWNor44GzYowgUni2ZxhGMwxFO7NLpNbxXDgvxbf0ZriEsSzVeZRnDG14hT_dpsQ1vwa6XNIkTGdLYSUWNmNsgtsYQqvRrkBCpuXvqc6PEqOpzHuI3EhwWWJHd2a89HTQaz9kfqlFaNnGjOPyj1Xec1pkgeSluYgpT3f_TrGVyeAc-kMgeUMfwWAbxe3ufW2evVb5dzpWIRlAXPvf3N6jiv_c7X-F">
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent flex flex-col justify-end p-6">
+<span class="text-surface font-bold text-lg mb-2">Dịch vụ cho thuê thiết bị IT</span>
+<button class="bg-primary-container text-on-primary px-4 py-2 rounded font-label-md w-max hover:bg-primary transition-colors">Tìm hiểu thêm</button>
+</div>
+</div>
+</aside>
+</main>
+<!-- Footer -->
+<footer class="bg-[#313030] font-body-sm text-body-sm text-primary-fixed full-width bottom-0 py-12">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter px-margin-desktop py-section-padding max-w-container-max mx-auto pt-12 pb-12">
+<div class="space-y-6">
+<img alt="Chính Nhân Technology" class="h-12 object-contain brightness-0 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCc1vkxr5kQo-Rqtlo9QNk7Sg9rHN1jwwxfKsby5MyqSYaswO1Ihrs3mHwu3TRJ3uSGfoiiLHshgYB0IHPAh-TXICFYVH9zd_y8wCcIXzIaoVLPs3TueL2gmlxFosAL-Yj2xGXrdoENb1M7RCl_PAHSi1xDYOkuJu4QB0oM4Z6quPtDgUkzPzCWpmxyzfYfEmcmrIoWuij5XcuKmLPvJz9O-VE7ms_oUqLGXdH8eEMyuxzithxAa_n8WmejEPoyytk5wA">
+<p class="text-surface-variant opacity-80 max-w-xs">Giải pháp IT toàn diện, chuyên nghiệp cho doanh nghiệp tại Việt Nam.</p>
+<p class="text-surface-variant opacity-80 max-w-xs">Giấy chứng nhận đăng ký kinh doanh số 0310279545 do Sở kế hoạch và đầu tư Tp. HCM cấp ngày 28/9/2010.</p>
+<div class="flex gap-4 items-center">
+<img alt="Đã thông báo Bộ Công Thương" class="h-10 object-contain rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBwLY3ntqv5_A_Rb_PwXT65RFWXwnzu3fcjkPc-krTxuJ-3T-WP6odUAOpWc_4MbQ86oERks2YpVQ_IbelBKlG8nBNcjgd3kutfjwASgS-R1HUXHpbA_Vzdkw8oN5DiI-HEixXpzhPH-zyMyjQGGLzldr4eyGNRKwhEaD7pCpiywKnOP3CEVddTAddtIURaclD7W7xPZ5ggkZABch0uTO79l9_tHdAD4445I-e-pIpjABZpwrhBWVT0_hIRpARbdzWfYw">
+<img alt="DMCA Protected" class="h-10 object-contain rounded" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCjVEMqmXDeMjLqzpRqzicAOsqNHbAdRcIEHsrUt7W7D4v-7DIXQfOZSVLpYAOuEcyoRYkwhFOmo2GKU5Po-xUxcrN8yXnKDn7GQLd8BxI2W-2y95EMXfllikdyhQXxVO9KdUwZuE2VfLwihADrz1mtKUr_zZ39X1NnMdPI8YBNmMHbNEZ_47nCpy3wP9ma_7eTqdPuaug4HDLrGVU_qhZgk59RRpk65rtZILxpNbP6uwlKR1ZLJ2Kps6yYMHbt41J1qg">
+</div>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary-container transition-colors" href="#"><span class="material-symbols-outlined text-white">language</span></a>
+<a class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-primary-container transition-colors" href="#"><span class="material-symbols-outlined text-white">mail</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-black text-white mb-6">Dịch vụ chính</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-surface-variant opacity-80 hover:text-primary-container transition-opacity" href="#">Bảo trì &amp; Helpdesk</a></li>
+<li class=""><a class="text-surface-variant opacity-80 hover:text-primary-container transition-opacity" href="#">Cho thuê thiết bị</a></li>
+<li class=""><a class="text-surface-variant opacity-80 hover:text-primary-container transition-opacity" href="#">Thi công mạng</a></li>
+<li class=""><a class="text-surface-variant opacity-80 hover:text-primary-container transition-opacity" href="#">Sửa chữa tận nơi</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-black text-white mb-6">Về chúng tôi</h4>
+<ul class="space-y-4">
+<li class=""><a class="text-surface-variant opacity-80 hover:text-primary-container transition-opacity" href="#">Về Chính Nhân</a></li>
+<li class=""><a class="text-surface-variant opacity-80 hover:text-primary-container transition-opacity" href="#">Câu hỏi thường gặp</a></li>
+<li class=""><a class="text-surface-variant opacity-80 hover:text-primary-container transition-opacity" href="#">Thủ thuật - Tin tức</a></li>
+<li class=""><a class="text-surface-variant opacity-80 hover:text-primary-container transition-opacity" href="#">Tuyển dụng</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-headline-sm text-headline-sm font-black text-white mb-6">Liên hệ</h4>
+<ul class="space-y-4 text-surface-variant opacity-80">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container">location_on</span>
+<span class="">245B Trần Quang Khải, phường Tân Định, TP. Hồ Chí Minh</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container">call</span>
+<span class="">Hotline: 1900 571 200</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary-container">mail</span>
+<span class="">info@chinhnhan.vn</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="border-t border-white/10 px-margin-desktop py-6">
+<div class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-surface-variant opacity-80">
+<p class="">© 2026 Chính Nhân Technology. All rights reserved. Professional IT Solutions.</p>
+</div>
+</div>
+</footer>
+
+
+</body></html>
