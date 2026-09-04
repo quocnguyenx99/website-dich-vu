@@ -29,6 +29,34 @@ const stripExportNotes = (html: string) => html
   .filter(line => !exportNotes.has(line.trim()))
   .join('\n')
 
+const clientLogos = [
+  ['CÔNG TY CỔ PHẦN THƯƠNG MẠI SẢN XUẤT TO MI.png', 'TOMI'],
+  ['CÔNG TY CỔ PHẦN ĐẦU TƯ  VÀ KINH DOANH VẬT LIỆU XÂY DỰNG  FICO.png', 'BMT FICO'],
+  ['CÔNG TY TNHH GIAO NHẬN VẬN TẢI TOÀN CẦU HELLMANN ( VIỆT NAM).png', 'Hellmann Worldwide Logistics'],
+  ['CÔNG TY TNHH KỸ THUẬT VIỆT THÀNH CÔNG.png', 'Việt Thành Công'],
+  ['CÔNG TY TNHH MANDARIN FOUNDRY.png', 'Mandarin Foundry'],
+  ['CÔNG TY TNHH NHA KHOA THÁI BÌNH DƯƠNG.png', 'Pacific Dental Supply'],
+  ['CÔNG TY TNHH NHẬT ANH.png', 'Nhật Anh'],
+  ['CÔNG TY TNHH THIẾT BỊ Y TẾ ĐỨC BÌNH.png', 'Đức Bình Medical Equipment'],
+  ['CÔNG TY TNHH THƯƠNG MẠI ĐẠI PHÚ.png', 'Đại Phú'],
+  ['CÔNG TY TNHH UCS VIỆT NAM.png', 'UCS Việt Nam'],
+  ['CÔNG TY TRÁCH NHIỆM HỮU HẠN HATCHANDO (VIỆT NAM).png', 'Hatchando Việt Nam'],
+  ['CÔNG TY TRÁCH NHIỆM HỮU HẠN TANAKA.png', 'Tanaka'],
+  ['NGÂN HÀNG MIZUHO BANK,LTD. - CHI NHÁNH THÀNH PHỐ HỒ CHÍ MINH.png', 'Mizuho Bank'],
+  ['VPĐD Jardine Matheson Limited Tại TPHCM.png', 'Jardines'],
+  ['VĂN PHÒNG ĐẠI DIỆN EL CORTE INGLES HONG KONG LIMITED TẠI THÀNH PHỐ HỒ CHÍ MINH.png', 'El Corte Inglés'],
+] as const
+
+const clientLogoWall = `<!-- Client Logo Wall -->
+<section class="py-16 bg-white border-t border-outline-variant">
+  <div class="max-w-container-max mx-auto px-margin-desktop text-center">
+    <h2 class="text-[40px] leading-[48px] font-bold text-on-surface uppercase tracking-tight mb-12">MỘT SỐ <span class="text-primary-container">KHÁCH HÀNG TIÊU BIỂU</span></h2>
+    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 md:gap-6 items-center">
+      ${clientLogos.map(([fileName, alt]) => `<div class="h-24 flex items-center justify-center border border-outline-variant bg-white p-4 hover:scale-105 hover:shadow-md transition-all duration-200 rounded-lg"><img src="${encodeURI(`/assets/LOGO CTY/${fileName}`)}" alt="Logo ${alt}" loading="lazy" decoding="async" class="max-w-full max-h-full object-contain" /></div>`).join('\n      ')}
+    </div>
+  </div>
+</section>`
+
 const formatServicePrices = (html: string) => html.replace(
   /<div class="service-price-summary[^"]*">\s*<span[^>]*>Giá dịch vụ<\/span>\s*<span[^>]*>(Từ )?([^<]+)<\/span>\s*<\/div>/g,
   (_, from: string | undefined, amount: string) => {
@@ -43,6 +71,10 @@ const formatServicePrices = (html: string) => html.replace(
 
 const prepareLegacyHtml = (pageKey: PageKey, html: string) => {
   let cleaned = formatServicePrices(stripExportNotes(html))
+  cleaned = cleaned.replace(
+    /<section class="py-16 bg-white border-t border-outline-variant">[\s\S]*?KHÁCH HÀNG TIÊU BIỂU[\s\S]*?<\/section>/,
+    clientLogoWall,
+  )
   if (pageKey === 'deployment') {
     cleaned = cleaned
       .replace('YÊU CẦU BÁO GIÁ', 'Khám phá dịch vụ')
