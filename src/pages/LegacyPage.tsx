@@ -29,8 +29,25 @@ const stripExportNotes = (html: string) => html
   .filter(line => !exportNotes.has(line.trim()))
   .join('\n')
 
+const formatServicePrices = (html: string) => html.replace(
+  /<div class="service-price-summary[^"]*">\s*<span[^>]*>Giá dịch vụ<\/span>\s*<span[^>]*>(Từ )?([^<]+)<\/span>\s*<\/div>/g,
+  (_, from: string | undefined, amount: string) => {
+    const fullPrice = `${from || ''}${amount}`
+    const contactClass = from ? '' : ' service-price-summary--contact'
+    return `<div class="service-price-summary${contactClass}" aria-label="Giá dịch vụ: ${fullPrice}">
+<span class="service-price-label">Giá dịch vụ</span>
+<span class="service-price-line">${from ? '<span class="service-price-from">Từ</span>' : ''}<span class="service-price-amount">${amount}</span></span>
+</div>`
+  },
+)
+
 const prepareLegacyHtml = (pageKey: PageKey, html: string) => {
-  const cleaned = stripExportNotes(html)
+  let cleaned = formatServicePrices(stripExportNotes(html))
+  if (pageKey === 'deployment') {
+    cleaned = cleaned
+      .replace('YÊU CẦU BÁO GIÁ', 'Khám phá dịch vụ')
+      .replace('TÌM HIỂU THÊM', 'Tìm hiểu thêm')
+  }
   if (pageKey !== 'contact') return cleaned
   return cleaned.replace(
     /(<img[^>]*data-location="Ho Chi Minh City"[^>]*src=")[^"]+("[^>]*>)/,
@@ -42,6 +59,32 @@ const normalizedText = (element: Element) => (element.textContent || '')
   .replace(/\s+/g, ' ')
   .trim()
   .toLocaleLowerCase('vi')
+
+const homeServiceRouteById: Record<string, string> = {
+  'home-service-rental': '/dich-vu/thue-thiet-bi',
+  'home-service-maintenance': '/dich-vu/bao-tri',
+  'home-service-deployment': '/dich-vu/thi-cong',
+  'home-service-repair': '/dich-vu/sua-chua',
+  'home-service-outsourcing': '/dich-vu/bao-tri',
+}
+
+const consultationServiceOptions: Record<string, string[]> = {
+  'Cho thuê thiết bị': [
+    'Cho thuê máy in A3', 'Cho thuê máy photocopy', 'Cho thuê máy photocopy màu', 'Cho thuê PC',
+    'Cho thuê máy in', 'Cho thuê máy chiếu', 'Cho thuê màn hình', 'Cho thuê laptop',
+    'Cho thuê server', 'Cho thuê máy in màu',
+  ],
+  'Thi công & lắp đặt': [
+    'Cấu hình Server', 'Camera giám sát văn phòng', 'Dịch vụ tháo lắp camera',
+    'Dịch vụ lắp đặt camera', 'Thi công camera giám sát',
+  ],
+  'Sửa chữa tận nơi': ['Sửa máy tính giá rẻ', 'Dịch vụ sửa chữa máy in'],
+  'Bảo trì & IT Helpdesk': [
+    'Dịch vụ bảo trì máy in', 'Dịch vụ bảo trì máy tính', 'Bảo trì máy chủ',
+    'Bảo trì máy tính để bàn / xách tay', 'Bảo trì hệ thống mạng',
+  ],
+  'Thuê IT Outsourcing': ['IT Helpdesk tại chỗ', 'IT Helpdesk từ xa', 'Quản trị hệ thống IT', 'Nhân sự IT thuê ngoài'],
+}
 
 export default function LegacyPage({ pageKey }: { pageKey: PageKey }) {
   const rootRef = useRef<HTMLDivElement>(null)
@@ -64,6 +107,41 @@ export default function LegacyPage({ pageKey }: { pageKey: PageKey }) {
       })
       navigate(location.pathname, { replace: true, state: null })
     }
+
+    const selectCleanups = Array.from(root.querySelectorAll<HTMLFormElement>('form')).flatMap(form => {
+      const serviceSelect = Array.from(form.querySelectorAll<HTMLSelectElement>('select')).find(select =>
+        select.name === 'serviceCategory'
+        || Array.from(select.options).some(option => normalizedText(option).includes('yêu cầu dịch vụ')),
+      )
+      if (!serviceSelect) return []
+
+      const subServiceSelect = document.createElement('select')
+      subServiceSelect.name = 'subService'
+      subServiceSelect.required = true
+      subServiceSelect.disabled = true
+      subServiceSelect.className = serviceSelect.className
+      subServiceSelect.setAttribute('aria-label', 'Dịch vụ cần tư vấn')
+
+      serviceSelect.name = 'serviceCategory'
+      serviceSelect.required = true
+      serviceSelect.setAttribute('aria-label', 'Danh mục dịch vụ')
+      serviceSelect.replaceChildren(new Option('Danh mục dịch vụ *', ''))
+      Object.keys(consultationServiceOptions).forEach(category => serviceSelect.add(new Option(category, category)))
+
+      const updateSubServices = () => {
+        const services = consultationServiceOptions[serviceSelect.value] || []
+        subServiceSelect.replaceChildren(new Option('Chọn dịch vụ cụ thể *', ''))
+        services.forEach(service => subServiceSelect.add(new Option(service, service)))
+        subServiceSelect.disabled = services.length === 0
+      }
+      updateSubServices()
+      serviceSelect.addEventListener('change', updateSubServices)
+      serviceSelect.insertAdjacentElement('afterend', subServiceSelect)
+      return [() => {
+        serviceSelect.removeEventListener('change', updateSubServices)
+        subServiceSelect.remove()
+      }]
+    })
 
     if (pageKey === 'home') {
       const homeServices = [
@@ -149,6 +227,15 @@ export default function LegacyPage({ pageKey }: { pageKey: PageKey }) {
         navigate('/tin-tuc/chi-tiet')
         return
       }
+      if (pageKey === 'home' && /xem chi tiết/.test(text)) {
+        const serviceSection = control.closest<HTMLElement>('[id^="home-service-"]')
+        const servicePath = serviceSection ? homeServiceRouteById[serviceSection.id] : undefined
+        if (servicePath) {
+          event.preventDefault()
+          navigate(servicePath)
+          return
+        }
+      }
       if (pageKey === 'news' && (control.closest('article') || control.querySelector('h4') || (/xem thêm/.test(text) && control.closest('aside')))) {
         event.preventDefault()
         navigate('/tin-tuc/chi-tiet')
@@ -201,6 +288,7 @@ export default function LegacyPage({ pageKey }: { pageKey: PageKey }) {
       carousel?.removeEventListener('scroll', updateButtons)
       root.removeEventListener('click', onClick)
       root.removeEventListener('submit', onSubmit)
+      selectCleanups.forEach(cleanup => cleanup())
     }
   }, [location.pathname, location.state, navigate, page.title, pageKey])
 

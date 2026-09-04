@@ -20,7 +20,7 @@ with sync_playwright() as p:
     assert page.locator("#dich-vu").evaluate("node => Math.abs(node.getBoundingClientRect().top) < 160")
 
     page.get_by_role("button", name="XEM CHI TIẾT").first.click()
-    page.wait_for_url("**#/dich-vu/chi-tiet")
+    page.wait_for_url("**#/dich-vu/thue-thiet-bi")
 
     page.goto("http://127.0.0.1:5173/#/")
     page.wait_for_load_state("networkidle")

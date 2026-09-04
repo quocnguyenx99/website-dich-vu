@@ -1,3 +1,5 @@
+import re
+
 from playwright.sync_api import sync_playwright
 
 
@@ -23,6 +25,68 @@ with sync_playwright() as p:
     assert page.url.endswith("#/")
     target_top = page.locator("#home-service-deployment").evaluate("node => node.getBoundingClientRect().top")
     assert 0 <= target_top <= 180, target_top
+
+    # Each Home service CTA opens its corresponding service category.
+    home_service_routes = {
+        "home-service-rental": "/dich-vu/thue-thiet-bi",
+        "home-service-maintenance": "/dich-vu/bao-tri",
+        "home-service-deployment": "/dich-vu/thi-cong",
+        "home-service-repair": "/dich-vu/sua-chua",
+        "home-service-outsourcing": "/dich-vu/bao-tri",
+    }
+    for section_id, route in home_service_routes.items():
+        page.goto("http://127.0.0.1:5173/#/")
+        page.wait_for_load_state("networkidle")
+        page.locator(f"#{section_id}").get_by_role("button", name="XEM CHI TIẾT").click()
+        page.wait_for_url(f"**#{route}")
+
+    # Consultation form uses a main category before enabling its matching sub-service list.
+    page.goto("http://127.0.0.1:5173/#/")
+    page.wait_for_load_state("networkidle")
+    consultation_form = page.locator(".page-home form").first
+    main_service = consultation_form.locator('select[name="serviceCategory"]')
+    sub_service = consultation_form.locator('select[name="subService"]')
+    assert main_service.is_visible() and sub_service.is_visible()
+    assert sub_service.is_disabled()
+    main_service.select_option(label="Thi công & lắp đặt")
+    assert not sub_service.is_disabled()
+    assert sub_service.locator("option").all_text_contents() == [
+        "Chọn dịch vụ cụ thể *", "Cấu hình Server", "Camera giám sát văn phòng",
+        "Dịch vụ tháo lắp camera", "Dịch vụ lắp đặt camera", "Thi công camera giám sát",
+    ]
+
+    # The dependent selector remains visible directly below its parent on mobile.
+    mobile = browser.new_page(viewport={"width": 390, "height": 844})
+    mobile.goto("http://127.0.0.1:5173/#/")
+    mobile.wait_for_load_state("networkidle")
+    mobile_form = mobile.locator(".page-home form").first
+    mobile_main_service = mobile_form.locator('select[name="serviceCategory"]')
+    mobile_sub_service = mobile_form.locator('select[name="subService"]')
+    mobile_main_service.select_option(label="Cho thuê thiết bị")
+    assert mobile_form.locator("select").count() == 3, mobile_form.locator("select").count()
+    assert mobile_sub_service.is_visible() and not mobile_sub_service.is_disabled()
+    assert mobile_sub_service.bounding_box()["y"] > mobile_main_service.bounding_box()["y"]
+    mobile.close()
+
+    # Header consultation CTA scrolls to the current page's consultation form.
+    page.locator("nav").get_by_role("link", name="Nhận tư vấn").click()
+    page.wait_for_timeout(700)
+    assert consultation_form.evaluate("node => node.getBoundingClientRect().top") < 900
+
+    # Floating quick-contact controls include social channels, hotline and delayed scroll-to-top.
+    floating_contact = page.locator(".floating-contact")
+    assert floating_contact.get_by_role("link").count() == 3
+    scroll_top = floating_contact.get_by_role("button", name="Lên đầu trang")
+    page.evaluate("window.scrollTo(0, 0)")
+    page.wait_for_timeout(150)
+    assert not scroll_top.is_visible()
+    page.evaluate("window.scrollTo(0, window.innerHeight / 3 + 40)")
+    page.wait_for_timeout(150)
+    assert scroll_top.is_visible()
+    scroll_top.click()
+    page.wait_for_timeout(300)
+    scroll_y = page.evaluate("window.scrollY")
+    assert scroll_y < page.evaluate("window.innerHeight / 3 + 40"), scroll_y
 
     # Header consultation CTA scrolls to the current page's consultation form.
     page.goto("http://127.0.0.1:5173/#/dich-vu/thue-thiet-bi")
@@ -50,6 +114,11 @@ with sync_playwright() as p:
     card_y = [round(cards.nth(index).bounding_box()["y"]) for index in range(4)]
     assert card_y[0] == card_y[1] == card_y[2]
     assert card_y[3] > card_y[2]
+
+    # Deployment hero CTAs use clear sentence-case labels.
+    deployment_hero = page.locator(".page-deployment main > section").first
+    assert deployment_hero.get_by_role("link", name=re.compile(r"^Khám phá dịch vụ")).is_visible()
+    assert deployment_hero.get_by_text("Tìm hiểu thêm", exact=True).is_visible()
 
     # The updated listing page is distinct from the sample article detail.
     page.goto("http://127.0.0.1:5173/#/tin-tuc")

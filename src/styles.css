@@ -97,6 +97,115 @@
 
 :root { color-scheme: light; }
 html { scroll-behavior: smooth; }
+
+.legacy-page select:disabled {
+  cursor: not-allowed;
+  opacity: .62;
+}
+
+.floating-contact {
+  position: fixed;
+  right: 20px;
+  bottom: 24px;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.floating-contact__button {
+  position: relative;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgba(255, 102, 0, .28);
+  border-radius: 50%;
+  background: #fff;
+  color: #ff6600;
+  box-shadow: 0 8px 20px rgba(35, 42, 52, .14);
+  transition: transform 180ms ease, background-color 180ms ease, color 180ms ease, opacity 180ms ease;
+}
+
+.floating-contact__button:hover,
+.floating-contact__button:focus-visible {
+  transform: translateY(-2px);
+  background: #ff6600;
+  color: #fff;
+  outline: none;
+}
+
+.floating-contact__button--facebook,
+.floating-contact__button--zalo,
+.floating-contact__button--hotline {
+  border-color: transparent;
+  overflow: visible;
+}
+.floating-contact__button--hotline {
+  background: #48ad36;
+  color: #fff;
+}
+.floating-contact__button--hotline:hover,
+.floating-contact__button--hotline:focus-visible {
+  background: #338c25;
+}
+.floating-contact__social-icon {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: contain;
+}
+.floating-contact__ping {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  border-radius: 50%;
+  background: rgba(255, 102, 0, .5);
+  box-shadow: 0 0 0 7px rgba(255, 102, 0, .14);
+  animation: floating-contact-ping 2.3s cubic-bezier(0, 0, .2, 1) infinite;
+}
+.floating-contact__button--zalo .floating-contact__ping { animation-delay: 1.2s; }
+.floating-contact__button--hotline .floating-contact__ping {
+  background: rgba(72, 173, 54, .52);
+  box-shadow: 0 0 0 7px rgba(72, 173, 54, .16);
+  animation-delay: .6s;
+}
+@keyframes floating-contact-ping {
+  0%, 44% { opacity: 0; transform: scale(1); }
+  48% { opacity: .9; }
+  86%, 100% { opacity: 0; transform: scale(2.05); }
+}
+.floating-contact__label {
+  position: absolute;
+  right: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%) translateX(4px);
+  width: max-content;
+  padding: 7px 10px;
+  border-radius: 7px;
+  background: #272d35;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.floating-contact__button:hover .floating-contact__label,
+.floating-contact__button:focus-visible .floating-contact__label { opacity: 1; transform: translateY(-50%) translateX(0); }
+.floating-contact__scroll-top { visibility: hidden; opacity: 0; transform: translateY(8px); }
+.floating-contact__scroll-top.is-visible { visibility: visible; opacity: 1; transform: translateY(0); }
+
+@media (max-width: 640px) {
+  .floating-contact { right: 12px; bottom: 16px; gap: 8px; }
+  .floating-contact__button { width: 44px; height: 44px; }
+  .floating-contact__label { display: none; }
+}
 body,
 button,
 input,
@@ -149,8 +258,86 @@ img { max-width: 100%; }
   font-size: 14px;
   line-height: 20px;
 }
+.legacy-page .service-price-summary {
+  display: block !important;
+  margin: 0 0 20px !important;
+  padding: 2px 0 18px !important;
+  border: 0 !important;
+  border-bottom: 1px solid #e8e8e8 !important;
+  border-radius: 0 !important;
+  background: transparent !important;
+}
+.legacy-page .service-price-label {
+  display: block;
+  margin-bottom: 5px;
+  color: #6f6f6f;
+  font-size: 12px;
+  font-weight: 650;
+  line-height: 18px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.legacy-page .service-price-line {
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+  min-height: 39px;
+  color: #ff6600;
+  line-height: 1;
+}
+.legacy-page .service-price-from {
+  color: #777;
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0;
+}
+.legacy-page .service-price-amount {
+  font-size: clamp(28px, 2.15vw, 34px);
+  font-weight: 850;
+  letter-spacing: -0.045em;
+  white-space: nowrap;
+}
+.legacy-page .service-price-summary--contact .service-price-amount {
+  font-size: clamp(24px, 1.9vw, 30px);
+  letter-spacing: -0.025em;
+}
+.page-news button:has(.material-symbols-outlined:first-child:last-child),
+.page-news-detail button:has(.material-symbols-outlined:first-child:last-child) {
+  min-width: 44px;
+  min-height: 44px;
+}
+.page-news aside > div.bg-white,
+.page-news-detail aside > div.bg-surface {
+  border: 1px solid rgba(90, 65, 54, 0.09) !important;
+  background: #fff !important;
+  box-shadow:
+    0 12px 32px rgba(45, 31, 25, 0.08),
+    0 3px 10px rgba(45, 31, 25, 0.04) !important;
+  transition: border-color 220ms ease, box-shadow 220ms ease, transform 220ms ease !important;
+}
+.page-news aside > div.bg-white:hover,
+.page-news-detail aside > div.bg-surface:hover {
+  border-color: rgba(255, 102, 0, 0.2) !important;
+  box-shadow:
+    0 18px 42px rgba(45, 31, 25, 0.11),
+    0 5px 14px rgba(255, 102, 0, 0.06) !important;
+  transform: translateY(-2px);
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .page-news-detail main.grid {
+    display: block !important;
+  }
+  .page-news-detail main.grid > aside {
+    margin-top: 32px;
+  }
+  .site-footer footer > .grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    row-gap: 48px !important;
+  }
+}
 @media (max-width: 767px) {
   .legacy-page .px-margin-desktop { padding-left: 16px !important; padding-right: 16px !important; }
+  .legacy-page .py-section-padding { padding-top: 48px !important; padding-bottom: 48px !important; }
   .legacy-page .text-display-lg { font-size: 34px !important; line-height: 42px !important; }
   .legacy-page .text-\[40px\] { font-size: 32px !important; line-height: 40px !important; }
   .legacy-page .text-headline-lg { font-size: 32px !important; line-height: 40px !important; }
@@ -159,4 +346,285 @@ img { max-width: 100%; }
   .page-news article h2 { font-size: 24px !important; line-height: 32px !important; }
   .page-home img[class*="h-[500px]"] { height: 300px !important; }
   .page-home section { scroll-margin-top: 88px; }
+  .legacy-page .service-price-amount { font-size: 31px; }
+  .legacy-page .service-price-summary--contact .service-price-amount { font-size: 27px; }
+  .page-news aside > div.bg-white,
+  .page-news-detail aside > div.bg-surface {
+    padding: 24px !important;
+    box-shadow:
+      0 10px 26px rgba(45, 31, 25, 0.075),
+      0 2px 8px rgba(45, 31, 25, 0.035) !important;
+  }
+  .site-footer footer > .grid,
+  .site-footer footer > .border-t {
+    padding-left: 16px !important;
+    padding-right: 16px !important;
+  }
+  .site-footer footer > .grid {
+    row-gap: 40px !important;
+    padding-top: 32px !important;
+    padding-bottom: 32px !important;
+  }
+  .site-footer footer > .border-t > div {
+    align-items: flex-start !important;
+    text-align: left;
+  }
+  .page-rental main > section:first-child,
+  .page-maintenance main > section:first-child,
+  .page-repair main > section:first-child,
+  .page-deployment main > section:first-child {
+    padding-top: 48px !important;
+    padding-bottom: 48px !important;
+  }
+  .page-rental main > section:first-child > .absolute > .absolute,
+  .page-maintenance main > section:first-child > .absolute > .absolute,
+  .page-repair main > section:first-child > .absolute > .absolute,
+  .page-deployment main > section:first-child > .absolute > .absolute {
+    width: 100% !important;
+    background: linear-gradient(90deg, rgba(255,255,255,.97) 0%, rgba(255,255,255,.9) 62%, rgba(255,255,255,.7) 100%) !important;
+  }
+  .page-rental main > section:first-child > .absolute img,
+  .page-maintenance main > section:first-child > .absolute img,
+  .page-repair main > section:first-child > .absolute img,
+  .page-deployment main > section:first-child > .absolute img {
+    opacity: .72 !important;
+  }
+  .page-rental main > section:first-child h1,
+  .page-maintenance main > section:first-child h1,
+  .page-repair main > section:first-child h1,
+  .page-deployment main > section:first-child h1 {
+    margin-bottom: 16px !important;
+    font-size: 32px !important;
+    line-height: 40px !important;
+  }
+  .page-rental main > section:first-child h1 + p,
+  .page-maintenance main > section:first-child h1 + p,
+  .page-repair main > section:first-child h1 + p,
+  .page-deployment main > section:first-child h1 + p {
+    margin-bottom: 28px !important;
+    color: #3e2d26 !important;
+    font-size: 16px !important;
+    line-height: 26px !important;
+  }
+  .page-rental main > section:first-child .flex.flex-wrap.gap-4,
+  .page-maintenance main > section:first-child .flex.flex-wrap.gap-4,
+  .page-repair main > section:first-child .flex.flex-wrap.gap-4,
+  .page-deployment main > section:first-child .flex.flex-wrap.gap-4 {
+    width: 100%;
+  }
+  .page-rental main > section:first-child .flex.flex-wrap.gap-4 > a,
+  .page-maintenance main > section:first-child .flex.flex-wrap.gap-4 > a,
+  .page-repair main > section:first-child .flex.flex-wrap.gap-4 > a,
+  .page-deployment main > section:first-child .flex.flex-wrap.gap-4 > a {
+    width: 100%;
+    justify-content: center;
+  }
+}
+@media (max-width: 359px) {
+  .legacy-page div:has(> form > input[type="tel"]) {
+    padding-left: 24px !important;
+    padding-right: 24px !important;
+  }
+  .legacy-page form:has(> input[type="tel"]) button[type="submit"] {
+    font-size: 16px !important;
+    line-height: 24px !important;
+  }
+}
+
+/* Balanced content density: calmer typography, imagery and vertical rhythm. */
+.legacy-page section.py-24 { padding-top: 72px !important; padding-bottom: 72px !important; }
+.legacy-page section.py-20 { padding-top: 60px !important; padding-bottom: 60px !important; }
+.legacy-page section.py-16 { padding-top: 48px !important; padding-bottom: 48px !important; }
+.legacy-page section.py-12 { padding-top: 40px !important; padding-bottom: 40px !important; }
+.legacy-page section.py-section-padding:not(#dich-vu) { padding-top: 60px !important; padding-bottom: 60px !important; }
+.legacy-page section#dich-vu { padding-top: 16px !important; padding-bottom: 60px !important; }
+.legacy-page section.py-section-desktop { padding-top: 60px !important; padding-bottom: 60px !important; }
+.legacy-page section .py-12 { padding-top: 32px !important; padding-bottom: 32px !important; }
+.legacy-page .gap-12 { gap: 36px !important; }
+.legacy-page .gap-16 { gap: 48px !important; }
+.legacy-page .gap-24 { gap: 64px !important; }
+.legacy-page .space-y-16 > :not([hidden]) ~ :not([hidden]) { margin-top: 48px !important; }
+.legacy-page .p-12 { padding: 36px !important; }
+.legacy-page .p-10 { padding: 32px !important; }
+.legacy-page .p-8 { padding: 24px !important; }
+.legacy-page .mb-12 { margin-bottom: 36px !important; }
+.legacy-page .mt-12 { margin-top: 36px !important; }
+.legacy-page .mb-10 { margin-bottom: 32px !important; }
+.legacy-page .mt-section-desktop { margin-top: 60px !important; }
+.legacy-page div:has(> form > input[type="tel"]) {
+  padding: 40px !important;
+}
+.legacy-page .rounded-3xl {
+  border-radius: 16px !important;
+}
+.legacy-page .shadow-2xl {
+  box-shadow: 0 14px 36px rgba(45, 31, 25, 0.09) !important;
+}
+.page-rental #services .card-hover,
+.page-maintenance #services .card-hover,
+.page-repair #services .card-hover,
+.page-deployment #services .card-hover {
+  border-radius: 14px !important;
+}
+.page-rental #services .card-hover > .relative.h-64,
+.page-maintenance #services .card-hover > .relative.h-64,
+.page-repair #services .card-hover > .relative.h-64,
+.page-deployment #services .card-hover > .relative.h-64 {
+  height: 220px !important;
+}
+.page-rental #services .card-hover > .p-6,
+.page-maintenance #services .card-hover > .p-6,
+.page-repair #services .card-hover > .p-6,
+.page-deployment #services .card-hover > .p-6 {
+  padding: 20px !important;
+}
+.page-rental #services .grid,
+.page-maintenance #services .grid,
+.page-repair #services .grid,
+.page-deployment #services .grid {
+  gap: 24px !important;
+}
+.page-rental #services .card-hover h3,
+.page-maintenance #services .card-hover h3,
+.page-repair #services .card-hover h3,
+.page-deployment #services .card-hover h3 {
+  font-size: 19px !important;
+  line-height: 26px !important;
+}
+.card-hover:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(45, 31, 25, 0.075);
+}
+.page-home #dich-vu h3 {
+  font-size: 42px !important;
+  line-height: 50px !important;
+}
+.page-home #dich-vu p.text-2xl {
+  margin-bottom: 24px !important;
+  font-size: 20px !important;
+  line-height: 30px !important;
+}
+.page-home #dich-vu li .text-lg {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+.page-home #dich-vu li .text-\[28px\] {
+  font-size: 22px !important;
+}
+.page-home #dich-vu ul {
+  margin-bottom: 28px !important;
+}
+.page-home #dich-vu img[class*="h-[500px]"] {
+  height: 400px !important;
+}
+.page-home header img[class*="h-[500px]"] {
+  height: 420px !important;
+}
+.page-news header.h-\[400px\] { height: 350px !important; }
+.page-news article img.h-\[400px\] { height: 320px !important; }
+.page-news aside > div.bg-white,
+.page-news-detail aside > div.bg-surface {
+  padding: 24px !important;
+}
+.page-news aside > div:not(.bg-white) > img {
+  height: 420px !important;
+  object-fit: cover;
+}
+.page-careers main > section:first-child { height: 420px !important; }
+.page-contact main > section:first-child { height: 420px !important; }
+.site-footer footer { padding-top: 0 !important; padding-bottom: 0 !important; }
+.site-footer footer > .grid { padding-top: 40px !important; padding-bottom: 40px !important; }
+
+@media (min-width: 768px) {
+  .legacy-page .text-display-lg { font-size: 42px !important; line-height: 52px !important; }
+  .legacy-page .text-4xl { font-size: 32px !important; line-height: 40px !important; }
+  .legacy-page .text-\[56px\] { font-size: 44px !important; line-height: 52px !important; }
+  .legacy-page .text-\[48px\] { font-size: 42px !important; line-height: 52px !important; }
+  .legacy-page .text-\[40px\] { font-size: 34px !important; line-height: 42px !important; }
+  .legacy-page .text-headline-lg { font-size: 32px !important; line-height: 40px !important; }
+  .legacy-page .text-headline-md { font-size: 26px !important; line-height: 34px !important; }
+  .page-service-detail h1 { font-size: 36px !important; line-height: 44px !important; }
+  .page-rental #sla h2,
+  .page-maintenance #sla h2,
+  .page-repair #sla h2,
+  .page-deployment #sla h2 {
+    font-size: 36px !important;
+    line-height: 44px !important;
+  }
+  .page-rental main > section:first-child,
+  .page-maintenance main > section:first-child,
+  .page-repair main > section:first-child,
+  .page-deployment main > section:first-child {
+    padding-top: 64px !important;
+    padding-bottom: 64px !important;
+  }
+}
+
+@media (max-width: 767px) {
+  .legacy-page section.py-24,
+  .legacy-page section.py-20,
+  .legacy-page section.py-16,
+  .legacy-page section.py-12,
+  .legacy-page section.py-section-padding:not(#dich-vu),
+  .legacy-page section.py-section-desktop {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  .legacy-page section#dich-vu { padding-top: 12px !important; padding-bottom: 40px !important; }
+  .legacy-page section .py-12 { padding-top: 24px !important; padding-bottom: 24px !important; }
+  .legacy-page .gap-12 { gap: 28px !important; }
+  .legacy-page .gap-16 { gap: 36px !important; }
+  .legacy-page .gap-24 { gap: 44px !important; }
+  .legacy-page .space-y-16 > :not([hidden]) ~ :not([hidden]) { margin-top: 36px !important; }
+  .legacy-page .p-12,
+  .legacy-page .p-10,
+  .legacy-page .p-8 { padding: 20px !important; }
+  .legacy-page .mb-12 { margin-bottom: 28px !important; }
+  .legacy-page .mt-12 { margin-top: 28px !important; }
+  .legacy-page .mb-10 { margin-bottom: 24px !important; }
+  .legacy-page div:has(> form > input[type="tel"]) { padding: 24px !important; }
+  .legacy-page .text-display-lg { font-size: 30px !important; line-height: 38px !important; }
+  .legacy-page .text-4xl { font-size: 28px !important; line-height: 36px !important; }
+  .legacy-page .text-\[40px\] { font-size: 28px !important; line-height: 36px !important; }
+  .legacy-page .text-headline-lg { font-size: 28px !important; line-height: 36px !important; }
+  .page-service-detail h1 { font-size: 28px !important; line-height: 36px !important; }
+  .page-service-detail h2.text-3xl { font-size: 26px !important; line-height: 34px !important; }
+  .page-careers h2.text-headline-lg { font-size: 28px !important; line-height: 36px !important; }
+  .page-news article h2 { font-size: 22px !important; line-height: 30px !important; }
+  .page-rental main > section:first-child,
+  .page-maintenance main > section:first-child,
+  .page-repair main > section:first-child,
+  .page-deployment main > section:first-child {
+    padding-top: 40px !important;
+    padding-bottom: 40px !important;
+  }
+  .page-rental main > section:first-child h1,
+  .page-maintenance main > section:first-child h1,
+  .page-repair main > section:first-child h1,
+  .page-deployment main > section:first-child h1 {
+    font-size: 30px !important;
+    line-height: 38px !important;
+  }
+  .page-rental #sla h2,
+  .page-maintenance #sla h2,
+  .page-repair #sla h2,
+  .page-deployment #sla h2 {
+    font-size: 28px !important;
+    line-height: 36px !important;
+  }
+  .page-rental #services .card-hover > .relative.h-64,
+  .page-maintenance #services .card-hover > .relative.h-64,
+  .page-repair #services .card-hover > .relative.h-64,
+  .page-deployment #services .card-hover > .relative.h-64 {
+    height: 200px !important;
+  }
+  .page-home #dich-vu h3 { font-size: 28px !important; line-height: 36px !important; }
+  .page-home #dich-vu p.text-2xl { font-size: 18px !important; line-height: 27px !important; }
+  .page-home #dich-vu img[class*="h-[500px]"] { height: 240px !important; }
+  .page-news header.h-\[400px\] { height: 300px !important; }
+  .page-news article img.h-\[400px\] { height: 210px !important; }
+  .page-news aside > div:not(.bg-white) > img { height: 340px !important; }
+  .page-careers main > section:first-child { height: 320px !important; }
+  .page-contact main > section:first-child { height: 320px !important; }
+  .site-footer footer > .grid { padding-top: 32px !important; padding-bottom: 32px !important; }
 }

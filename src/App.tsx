@@ -1,11 +1,12 @@
 import { HashRouter, Navigate, Route, Routes } from 'react-router-dom'
 import SiteHeader from './components/SiteHeader'
 import SiteFooter from './components/SiteFooter'
+import FloatingContact from './components/FloatingContact'
 import LegacyPage from './pages/LegacyPage'
 import { siteRoutes } from './routes'
 
 function Shell({ children }: { children: React.ReactNode }) {
-  return <div className="min-h-screen bg-white text-on-background flex flex-col"><SiteHeader /><div className="flex-1">{children}</div><SiteFooter /></div>
+  return <div className="min-h-screen bg-white text-on-background flex flex-col"><SiteHeader /><div className="flex-1">{children}</div><SiteFooter /><FloatingContact /></div>
 }
 
 export default function App() {

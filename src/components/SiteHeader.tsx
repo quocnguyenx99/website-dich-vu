@@ -52,7 +52,7 @@ export default function SiteHeader() {
     <nav className="bg-white sticky top-0 z-50 shadow-sm border-b border-outline-variant">
       <div className="flex justify-between items-center w-full px-margin-mobile md:px-margin-desktop max-w-container-max mx-auto h-20 md:h-24">
         <Link to="/" onClick={closeMenus} className="shrink-0"><img src="/assets/chinh-nhan-logo.png" alt="Chính Nhân Technology" className="h-9 md:h-10 object-contain" /></Link>
-        <ul className="hidden lg:flex items-center gap-7 text-sm font-semibold">
+        <ul className="hidden xl:flex items-center gap-7 text-sm font-semibold">
           <li className="relative about-mega" onMouseEnter={() => setOpenDropdown('about')} onMouseLeave={() => setOpenDropdown(null)} onFocus={() => setOpenDropdown('about')} onBlur={closeOnBlur}>
             <Link onClick={closeMenus} className={`${navClass(pathname === '/')} flex items-center gap-1`} to="/">Giới thiệu <span className="material-symbols-outlined text-[18px]">keyboard_arrow_down</span></Link>
             <div className={`absolute top-full left-1/2 -translate-x-1/2 mt-4 w-60 bg-white rounded-lg shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-outline-variant p-2 flex-col z-50 ${openDropdown === 'about' ? 'flex' : 'hidden'}`}>
@@ -78,13 +78,13 @@ export default function SiteHeader() {
           <li><Link onClick={closeMenus} className={navClass(isActive('/tuyen-dung'))} to="/tuyen-dung">Tuyển dụng</Link></li>
           <li><Link onClick={closeMenus} className={navClass(isActive('/lien-he'))} to="/lien-he">Liên hệ</Link></li>
         </ul>
-        <div className="hidden lg:flex items-center gap-4">
+        <div className="hidden xl:flex items-center gap-4">
           <LanguageFlags />
           <Link to="/lien-he" state={{ scrollToConsultation: true }} onClick={onConsultClick} className="bg-primary-container text-white px-5 py-2.5 rounded-lg font-bold text-sm flex items-center gap-2 hover:bg-primary transition-all shadow-sm">Nhận tư vấn<span className="material-symbols-outlined text-[18px]">arrow_forward</span></Link>
         </div>
-        <button aria-label="Mở menu" className="lg:hidden text-on-surface p-2" onClick={() => setOpen(v => !v)}><span className="material-symbols-outlined">{open ? 'close' : 'menu'}</span></button>
+        <button aria-label="Mở menu" aria-expanded={open} aria-controls="mobile-navigation" className="xl:hidden text-on-surface p-2" onClick={() => setOpen(v => !v)}><span className="material-symbols-outlined">{open ? 'close' : 'menu'}</span></button>
       </div>
-      {open && <div className="lg:hidden border-t border-outline-variant bg-white px-4 py-4 shadow-lg">
+      {open && <div id="mobile-navigation" className="xl:hidden border-t border-outline-variant bg-white px-4 py-4 shadow-lg overflow-y-auto overscroll-contain max-h-[calc(100vh-80px)] md:max-h-[calc(100vh-96px)]">
         <div className="flex flex-col gap-2 max-w-container-max mx-auto">
           <Link onClick={closeMenus} to="/" className="p-3 rounded-lg hover:bg-surface-container">Trang chủ / Giới thiệu</Link>
           <div className="pl-6 text-sm text-on-surface-variant">Về Chính Nhân <span className="text-xs opacity-60">(Sắp có)</span></div>
