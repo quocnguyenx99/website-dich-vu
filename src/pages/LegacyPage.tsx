@@ -48,6 +48,16 @@ const prepareLegacyHtml = (pageKey: PageKey, html: string) => {
       .replace('YÊU CẦU BÁO GIÁ', 'Khám phá dịch vụ')
       .replace('TÌM HIỂU THÊM', 'Tìm hiểu thêm')
   }
+  if (pageKey === 'home') {
+    const commitments = cleaned.match(/<section class="bg-white border-b border-outline-variant relative z-20 overflow-hidden py-12">[\s\S]*?<\/section>\s*/)
+    if (commitments) {
+      cleaned = cleaned.replace(commitments[0], '')
+      cleaned = cleaned.replace(
+        '<header class="relative bg-white overflow-hidden border-b border-outline-variant py-16">',
+        `${commitments[0]}<header class="relative bg-white overflow-hidden border-b border-outline-variant py-16">`,
+      )
+    }
+  }
   if (pageKey === 'careers') {
     cleaned = cleaned.replace(
       /<!-- Job Card 1 -->[\s\S]*?<!-- CTA Section -->/,

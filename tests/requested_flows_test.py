@@ -12,6 +12,9 @@ with sync_playwright() as p:
     # Dropdown closes immediately after selecting a route.
     page.goto("http://127.0.0.1:5173/#/")
     page.wait_for_load_state("networkidle")
+    commitment_heading = page.get_by_text("≤ 30 Phút", exact=True)
+    hero_heading = page.get_by_role("heading", name=re.compile("TƯ VẤN.*THIẾT KẾ"))
+    assert commitment_heading.bounding_box()["y"] < hero_heading.bounding_box()["y"]
     page.locator(".mega-menu-trigger").hover()
     page.locator(".mega-menu").get_by_role("link", name="Bảo trì & IT Helpdesk").click()
     page.wait_for_url("**#/dich-vu/bao-tri")
