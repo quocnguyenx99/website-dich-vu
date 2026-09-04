@@ -48,10 +48,36 @@ const prepareLegacyHtml = (pageKey: PageKey, html: string) => {
       .replace('YÊU CẦU BÁO GIÁ', 'Khám phá dịch vụ')
       .replace('TÌM HIỂU THÊM', 'Tìm hiểu thêm')
   }
+  if (pageKey === 'careers') {
+    cleaned = cleaned.replace(
+      /<!-- Job Card 1 -->[\s\S]*?<!-- CTA Section -->/,
+      `<!-- Job Card 1 -->
+<article class="career-job-card bg-surface rounded-xl shadow-[0_4px_20px_rgba(0,0,0,0.05)] border border-surface-variant hover:border-b-2 hover:border-b-primary-container hover:shadow-lg transition-all duration-300 p-6 md:p-8 flex flex-col md:flex-row justify-between items-start md:items-center gap-6 group">
+  <div class="flex-1">
+    <div class="flex flex-wrap gap-2 mb-3">
+      <span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full font-label-md text-xs">Kỹ thuật</span>
+      <span class="bg-surface-variant text-on-surface-variant px-3 py-1 rounded-full font-label-md text-xs">TP.HCM</span>
+      <span class="bg-green-100 text-green-800 px-3 py-1 rounded-full font-label-md text-xs flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">group</span>2 vị trí</span>
+    </div>
+    <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors mb-4">Nhân viên Kỹ thuật Hỗ trợ Phần cứng/Mạng</h3>
+    <ul class="space-y-2 font-body-sm text-body-sm text-on-surface-variant list-none">
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary-container text-lg shrink-0">check_circle</span>Lương thỏa thuận.</li>
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary-container text-lg shrink-0">check_circle</span>Địa điểm làm việc: Hồ Chí Minh.</li>
+      <li class="flex items-start gap-2"><span class="material-symbols-outlined text-primary-container text-lg shrink-0">check_circle</span>Kinh nghiệm: 2 năm.</li>
+    </ul>
+  </div>
+  <div class="w-full md:w-auto mt-4 md:mt-0 flex flex-col gap-3 items-end">
+    <button class="w-full md:w-auto bg-primary-container text-white px-8 py-3 rounded-lg font-label-md text-label-md hover:bg-orange-600 transition-colors shadow-sm text-center">Xem chi tiết</button>
+    <span class="font-body-sm text-body-sm text-on-surface-variant">Hạn nộp: 30/09/2026</span>
+  </div>
+</article>
+<!-- CTA Section -->`,
+    )
+  }
   if (pageKey !== 'contact') return cleaned
   return cleaned.replace(
     /(<img[^>]*data-location="Ho Chi Minh City"[^>]*src=")[^"]+("[^>]*>)/,
-    '$1/assets/contact-map.jpg$2',
+    '$1/assets/contact-map-detailed.png$2',
   )
 }
 

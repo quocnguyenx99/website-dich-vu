@@ -120,6 +120,15 @@ with sync_playwright() as p:
     assert deployment_hero.get_by_role("link", name=re.compile(r"^Khám phá dịch vụ")).is_visible()
     assert deployment_hero.get_by_text("Tìm hiểu thêm", exact=True).is_visible()
 
+    # Careers show one concise, current opening and no legacy job cards or pagination.
+    page.goto("http://127.0.0.1:5173/#/tuyen-dung")
+    page.wait_for_load_state("networkidle")
+    careers_card = page.locator(".career-job-card")
+    assert careers_card.count() == 1
+    assert careers_card.get_by_role("heading", name="Nhân viên Kỹ thuật Hỗ trợ Phần cứng/Mạng").is_visible()
+    assert careers_card.get_by_text(re.compile(r"Hạn nộp:\s*30/09/2026")).is_visible()
+    assert page.locator(".page-careers .career-job-card + div").count() == 0
+
     # The updated listing page is distinct from the sample article detail.
     page.goto("http://127.0.0.1:5173/#/tin-tuc")
     page.wait_for_load_state("networkidle")
@@ -139,12 +148,24 @@ with sync_playwright() as p:
     assert about_menu.get_by_text("Đội ngũ kỹ thuật").is_visible()
     assert page.locator(".about-mega > a").get_attribute("href") == "#/"
 
+    # Footer links point to their matching routes, including the FAQ fallback article.
+    page.goto("http://127.0.0.1:5173/#/")
+    page.wait_for_load_state("networkidle")
+    footer = page.locator(".site-footer")
+    assert footer.get_by_role("link", name="Bảo trì & Helpdesk").get_attribute("href") == "#/dich-vu/bao-tri"
+    assert footer.get_by_role("link", name="Cho thuê thiết bị").get_attribute("href") == "#/dich-vu/thue-thiet-bi"
+    assert footer.get_by_role("link", name="Thi công mạng").get_attribute("href") == "#/dich-vu/thi-cong"
+    assert footer.get_by_role("link", name="Sửa chữa tận nơi").get_attribute("href") == "#/dich-vu/sua-chua"
+    assert footer.get_by_role("link", name="Câu hỏi thường gặp").get_attribute("href") == "#/tin-tuc/chi-tiet"
+    footer.get_by_role("link", name="Câu hỏi thường gặp").click()
+    page.wait_for_url("**#/tin-tuc/chi-tiet")
+
     # Contact map is no longer washed out by the former 60-80% white overlay.
     page.goto("http://127.0.0.1:5173/#/lien-he")
     page.wait_for_load_state("networkidle")
-    assert page.locator(".page-contact main > section:first-child > img").get_attribute("src") == "/assets/contact-map.jpg"
+    assert page.locator(".page-contact main > section:first-child > img").get_attribute("src") == "/assets/contact-map-detailed.png"
     map_overlay = page.locator(".page-contact main > section:first-child > div.absolute.inset-0")
-    assert float(map_overlay.evaluate("node => getComputedStyle(node).opacity")) <= 0.32
+    assert float(map_overlay.evaluate("node => getComputedStyle(node).opacity")) <= 0.16
     map_filter = page.locator(".page-contact main > section:first-child > img").evaluate("node => getComputedStyle(node).filter")
     assert "contrast" in map_filter and "saturate" in map_filter
 

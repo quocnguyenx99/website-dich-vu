@@ -239,11 +239,11 @@ img { max-width: 100%; }
   }
 }
 .page-contact main > section:first-child > img {
-  filter: contrast(1.08) saturate(1.08);
+  filter: contrast(1.16) saturate(1.12);
 }
 .page-contact main > section:first-child > div.absolute.inset-0 {
-  background: linear-gradient(to top, rgba(255, 255, 255, 0.48), transparent 58%) !important;
-  opacity: 0.32 !important;
+  background: linear-gradient(to top, rgba(255, 255, 255, 0.26), transparent 58%) !important;
+  opacity: 0.16 !important;
 }
 .site-footer a { cursor: pointer; }
 .legacy-page button,

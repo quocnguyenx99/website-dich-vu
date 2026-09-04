@@ -93,6 +93,7 @@ export default function SiteHeader() {
           {serviceLinks.map(item => <Link onClick={closeMenus} key={item.to} to={item.to} className="p-3 rounded-lg hover:bg-surface-container flex items-center gap-3"><span className="material-symbols-outlined text-primary-container">{item.icon}</span>{item.title}</Link>)}
           <Link onClick={closeMenus} to="/tin-tuc" className="p-3 rounded-lg hover:bg-surface-container">Thủ thuật - Tin tức</Link>
           <Link onClick={closeMenus} to="/tuyen-dung" className="p-3 rounded-lg hover:bg-surface-container">Tuyển dụng</Link>
+          <Link onClick={closeMenus} to="/lien-he" className="p-3 rounded-lg hover:bg-surface-container">Liên hệ</Link>
           <LanguageFlags mobile />
           <Link onClick={onConsultClick} state={{ scrollToConsultation: true }} to="/lien-he" className="p-3 rounded-lg bg-primary-container text-white font-bold text-center mt-2">Nhận tư vấn</Link>
         </div>
